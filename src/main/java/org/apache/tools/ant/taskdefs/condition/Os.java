@@ -25,7 +25,7 @@ import org.apache.tools.ant.BuildException;
  *
  * @since Ant 1.4
  */
-public class Os implements Condition {
+public class Os /*implements Condition*/ {
     private static final String OS_NAME =
         System.getProperty("os.name").toLowerCase(Locale.US);
     private static final String OS_ARCH =

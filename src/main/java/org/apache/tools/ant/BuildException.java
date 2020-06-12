@@ -28,8 +28,8 @@ public class BuildException extends RuntimeException {
     /** Exception that might have caused this one. */
     private Throwable cause;
 
-    /** Location in the build file where the exception occurred */
-    private Location location = Location.UNKNOWN_LOCATION;
+//    /** Location in the build file where the exception occurred */
+//    private Location location = Location.UNKNOWN_LOCATION;
 
     /**
      * Constructs a build exception with no descriptive information.
@@ -62,21 +62,21 @@ public class BuildException extends RuntimeException {
         this.cause = cause;
     }
 
-    /**
-     * Constructs an exception with the given message and exception as
-     * a root cause and a location in a file.
-     *
-     * @param msg A description of or information about the exception.
-     *            Should not be <code>null</code> unless a cause is specified.
-     * @param cause The exception that might have caused this one.
-     *              May be <code>null</code>.
-     * @param location The location in the project file where the error
-     *                 occurred. Must not be <code>null</code>.
-     */
-    public BuildException(String msg, Throwable cause, Location location) {
-        this(msg, cause);
-        this.location = location;
-    }
+//    /**
+//     * Constructs an exception with the given message and exception as
+//     * a root cause and a location in a file.
+//     *
+//     * @param msg A description of or information about the exception.
+//     *            Should not be <code>null</code> unless a cause is specified.
+//     * @param cause The exception that might have caused this one.
+//     *              May be <code>null</code>.
+//     * @param location The location in the project file where the error
+//     *                 occurred. Must not be <code>null</code>.
+//     */
+//    public BuildException(String msg, Throwable cause, Location location) {
+//        this(msg, cause);
+//        this.location = location;
+//    }
 
     /**
      * Constructs an exception with the given exception as a root cause.
@@ -89,33 +89,33 @@ public class BuildException extends RuntimeException {
         this.cause = cause;
     }
 
-    /**
-     * Constructs an exception with the given descriptive message and a
-     * location in a file.
-     *
-     * @param message A description of or information about the exception.
-     *            Should not be <code>null</code>.
-     * @param location The location in the project file where the error
-     *                 occurred. Must not be <code>null</code>.
-     */
-    public BuildException(String message, Location location) {
-        super(message);
-        this.location = location;
-    }
-
-    /**
-     * Constructs an exception with the given exception as
-     * a root cause and a location in a file.
-     *
-     * @param cause The exception that might have caused this one.
-     *              Should not be <code>null</code>.
-     * @param location The location in the project file where the error
-     *                 occurred. Must not be <code>null</code>.
-     */
-    public BuildException(Throwable cause, Location location) {
-        this(cause);
-        this.location = location;
-    }
+//    /**
+//     * Constructs an exception with the given descriptive message and a
+//     * location in a file.
+//     *
+//     * @param message A description of or information about the exception.
+//     *            Should not be <code>null</code>.
+//     * @param location The location in the project file where the error
+//     *                 occurred. Must not be <code>null</code>.
+//     */
+//    public BuildException(String message, Location location) {
+//        super(message);
+//        this.location = location;
+//    }
+//
+//    /**
+//     * Constructs an exception with the given exception as
+//     * a root cause and a location in a file.
+//     *
+//     * @param cause The exception that might have caused this one.
+//     *              Should not be <code>null</code>.
+//     * @param location The location in the project file where the error
+//     *                 occurred. Must not be <code>null</code>.
+//     */
+//    public BuildException(Throwable cause, Location location) {
+//        this(cause);
+//        this.location = location;
+//    }
 
     /**
      * Returns the nested exception, if any.
@@ -137,33 +137,33 @@ public class BuildException extends RuntimeException {
         return getException();
     }
 
-    /**
-     * Returns the location of the error and the error message.
-     *
-     * @return the location of the error and the error message
-     */
-    public String toString() {
-        return location.toString() + getMessage();
-    }
+//    /**
+//     * Returns the location of the error and the error message.
+//     *
+//     * @return the location of the error and the error message
+//     */
+//    public String toString() {
+//        return location.toString() + getMessage();
+//    }
 
-    /**
-     * Sets the file location where the error occurred.
-     *
-     * @param location The file location where the error occurred.
-     *                 Must not be <code>null</code>.
-     */
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    /**
-     * Returns the file location where the error occurred.
-     *
-     * @return the file location where the error occurred.
-     */
-    public Location getLocation() {
-        return location;
-    }
+//    /**
+//     * Sets the file location where the error occurred.
+//     *
+//     * @param location The file location where the error occurred.
+//     *                 Must not be <code>null</code>.
+//     */
+//    public void setLocation(Location location) {
+//        this.location = location;
+//    }
+//
+//    /**
+//     * Returns the file location where the error occurred.
+//     *
+//     * @return the file location where the error occurred.
+//     */
+//    public Location getLocation() {
+//        return location;
+//    }
 
     /**
      * Prints the stack trace for this exception and any

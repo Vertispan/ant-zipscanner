@@ -31,10 +31,9 @@ import java.util.Enumeration;
 
 import org.apache.tools.ant.taskdefs.condition.Os;
 import org.apache.tools.ant.types.Resource;
-import org.apache.tools.ant.types.ResourceFactory;
-import org.apache.tools.ant.types.selectors.FileSelector;
+//import org.apache.tools.ant.types.ResourceFactory;
+//import org.apache.tools.ant.types.selectors.FileSelector;
 import org.apache.tools.ant.types.selectors.SelectorUtils;
-import org.apache.tools.ant.types.selectors.SelectorScanner;
 import org.apache.tools.ant.util.FileUtils;
 
 /**
@@ -121,7 +120,7 @@ import org.apache.tools.ant.util.FileUtils;
  *
  */
 public class DirectoryScanner
-       implements FileScanner, SelectorScanner, ResourceFactory {
+       /*implements FileScanner, SelectorScanner, ResourceFactory*/ {
 
     /** Is OpenVMS the operating system we're running on? */
     private static final boolean ON_VMS = Os.isFamily("openvms");
@@ -193,8 +192,8 @@ public class DirectoryScanner
     /** The patterns for the files to be excluded. */
     protected String[] excludes;
 
-    /** Selectors that will filter which files are in our candidate list. */
-    protected FileSelector[] selectors = null;
+//    /** Selectors that will filter which files are in our candidate list. */
+//    protected FileSelector[] selectors = null;
 
     /**
      * The files which matched at least one include and no excludes
@@ -720,14 +719,14 @@ public class DirectoryScanner
         return pattern;
     }
 
-    /**
-     * Set the selectors that will select the filelist.
-     *
-     * @param selectors specifies the selectors to be invoked on a scan.
-     */
-    public synchronized void setSelectors(FileSelector[] selectors) {
-        this.selectors = selectors;
-    }
+//    /**
+//     * Set the selectors that will select the filelist.
+//     *
+//     * @param selectors specifies the selectors to be invoked on a scan.
+//     */
+//    public synchronized void setSelectors(FileSelector[] selectors) {
+//        this.selectors = selectors;
+//    }
 
     /**
      * Return whether or not the scanner has included all the files or
@@ -1272,13 +1271,13 @@ public class DirectoryScanner
      *         should not be selected, <code>true</code> otherwise.
      */
     protected boolean isSelected(String name, File file) {
-        if (selectors != null) {
-            for (int i = 0; i < selectors.length; i++) {
-                if (!selectors[i].isSelected(basedir, name, file)) {
-                    return false;
-                }
-            }
-        }
+//        if (selectors != null) {
+//            for (int i = 0; i < selectors.length; i++) {
+//                if (!selectors[i].isSelected(basedir, name, file)) {
+//                    return false;
+//                }
+//            }
+//        }
         return true;
     }
 
