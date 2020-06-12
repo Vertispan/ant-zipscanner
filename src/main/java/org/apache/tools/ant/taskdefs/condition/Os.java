@@ -35,10 +35,10 @@ public class Os /*implements Condition*/ {
     private static final String PATH_SEP =
         System.getProperty("path.separator");
 
-    private String family;
-    private String name;
-    private String version;
-    private String arch;
+//    private String family;
+//    private String name;
+//    private String version;
+//    private String arch;
 
     /**
      * Default constructor
@@ -47,72 +47,72 @@ public class Os /*implements Condition*/ {
     public Os() {
     }
 
-    /**
-     * Constructor that sets the family attribute
-     *
-     * @param family a String value
-     */
-    public Os(String family) {
-        setFamily(family);
-    }
+//    /**
+//     * Constructor that sets the family attribute
+//     *
+//     * @param family a String value
+//     */
+//    public Os(String family) {
+//        setFamily(family);
+//    }
 
-    /**
-     * Sets the desired OS family type
-     *
-     * @param f      The OS family type desired<br />
-     *               Possible values:<br />
-     *               <ul>
-     *               <li>dos</li>
-     *               <li>mac</li>
-     *               <li>netware</li>
-     *               <li>os/2</li>
-     *               <li>tandem</li>
-     *               <li>unix</li>
-     *               <li>windows</li>
-     *               <li>win9x</li>
-     *               <li>z/os</li>
-     *               <li>os/400</li>
-     *               </ul>
-     */
-    public void setFamily(String f) {
-        family = f.toLowerCase(Locale.US);
-    }
+//    /**
+//     * Sets the desired OS family type
+//     *
+//     * @param f      The OS family type desired<br />
+//     *               Possible values:<br />
+//     *               <ul>
+//     *               <li>dos</li>
+//     *               <li>mac</li>
+//     *               <li>netware</li>
+//     *               <li>os/2</li>
+//     *               <li>tandem</li>
+//     *               <li>unix</li>
+//     *               <li>windows</li>
+//     *               <li>win9x</li>
+//     *               <li>z/os</li>
+//     *               <li>os/400</li>
+//     *               </ul>
+//     */
+//    public void setFamily(String f) {
+//        family = f.toLowerCase(Locale.US);
+//    }
 
-    /**
-     * Sets the desired OS name
-     *
-     * @param name   The OS name
-     */
-    public void setName(String name) {
-        this.name = name.toLowerCase(Locale.US);
-    }
+//    /**
+//     * Sets the desired OS name
+//     *
+//     * @param name   The OS name
+//     */
+//    public void setName(String name) {
+//        this.name = name.toLowerCase(Locale.US);
+//    }
 
-    /**
-     * Sets the desired OS architecture
-     *
-     * @param arch   The OS architecture
-     */
-    public void setArch(String arch) {
-        this.arch = arch.toLowerCase(Locale.US);
-    }
+//    /**
+//     * Sets the desired OS architecture
+//     *
+//     * @param arch   The OS architecture
+//     */
+//    public void setArch(String arch) {
+//        this.arch = arch.toLowerCase(Locale.US);
+//    }
 
-    /**
-     * Sets the desired OS version
-     *
-     * @param version   The OS version
-     */
-    public void setVersion(String version) {
-        this.version = version.toLowerCase(Locale.US);
-    }
+//    /**
+//     * Sets the desired OS version
+//     *
+//     * @param version   The OS version
+//     */
+//    public void setVersion(String version) {
+//        this.version = version.toLowerCase(Locale.US);
+//    }
 
-    /**
-     * Determines if the OS on which Ant is executing matches the type of
-     * that set in setFamily.
-     * @see Os#setFamily(String)
-     */
-    public boolean eval() throws BuildException {
-        return isOs(family, name, arch, version);
-    }
+//    /**
+//     * Determines if the OS on which Ant is executing matches the type of
+//     * that set in setFamily.
+//     * @see Os#setFamily(String)
+//     */
+//    public boolean eval() throws BuildException {
+//        return isOs(family, name, arch, version);
+//    }
 
     /**
      * Determines if the OS on which Ant is executing matches the
@@ -125,41 +125,41 @@ public class Os /*implements Condition*/ {
         return isOs(family, null, null, null);
     }
 
-    /**
-     * Determines if the OS on which Ant is executing matches the
-     * given OS name.
-     *
-     * @param name the OS name to check for
-     * @return true if the OS matches
-     * @since 1.7
-     */
-    public static boolean isName(String name) {
-        return isOs(null, name, null, null);
-    }
+//    /**
+//     * Determines if the OS on which Ant is executing matches the
+//     * given OS name.
+//     *
+//     * @param name the OS name to check for
+//     * @return true if the OS matches
+//     * @since 1.7
+//     */
+//    public static boolean isName(String name) {
+//        return isOs(null, name, null, null);
+//    }
 
-    /**
-     * Determines if the OS on which Ant is executing matches the
-     * given OS architecture.
-     *
-     * @param arch the OS architecture to check for
-     * @return true if the OS matches
-     * @since 1.7
-     */
-    public static boolean isArch(String arch) {
-        return isOs(null, null, arch, null);
-    }
+//    /**
+//     * Determines if the OS on which Ant is executing matches the
+//     * given OS architecture.
+//     *
+//     * @param arch the OS architecture to check for
+//     * @return true if the OS matches
+//     * @since 1.7
+//     */
+//    public static boolean isArch(String arch) {
+//        return isOs(null, null, arch, null);
+//    }
 
-    /**
-     * Determines if the OS on which Ant is executing matches the
-     * given OS version.
-     *
-     * @param version the OS version to check for
-     * @return true if the OS matches
-     * @since 1.7
-     */
-    public static boolean isVersion(String version) {
-        return isOs(null, null, null, version);
-    }
+//    /**
+//     * Determines if the OS on which Ant is executing matches the
+//     * given OS version.
+//     *
+//     * @param version the OS version to check for
+//     * @return true if the OS matches
+//     * @since 1.7
+//     */
+//    public static boolean isVersion(String version) {
+//        return isOs(null, null, null, version);
+//    }
 
     /**
      * Determines if the OS on which Ant is executing matches the

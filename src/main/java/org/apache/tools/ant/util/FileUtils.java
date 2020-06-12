@@ -60,29 +60,29 @@ public class FileUtils {
 
     private static final FileUtils PRIMARY_INSTANCE = new FileUtils();
 
-    //get some non-crypto-grade randomness from various places.
-    private static Random rand = new Random(System.currentTimeMillis()
-            + Runtime.getRuntime().freeMemory());
+//    //get some non-crypto-grade randomness from various places.
+//    private static Random rand = new Random(System.currentTimeMillis()
+//            + Runtime.getRuntime().freeMemory());
 
     private static boolean onNetWare = Os.isFamily("netware");
     private static boolean onDos = Os.isFamily("dos");
 
-    private static final int BUF_SIZE = 8192;
+//    private static final int BUF_SIZE = 8192;
 
     // for toURI
     private static boolean[] isSpecial = new boolean[256];
     private static char[] escapedChar1 = new char[256];
     private static char[] escapedChar2 = new char[256];
 
-    /**
-     * The granularity of timestamps under FAT.
-     */
-    public static final long FAT_FILE_TIMESTAMP_GRANULARITY = 2000;
+//    /**
+//     * The granularity of timestamps under FAT.
+//     */
+//    public static final long FAT_FILE_TIMESTAMP_GRANULARITY = 2000;
 
-    /**
-     * The granularity of timestamps under Unix.
-     */
-    public static final long UNIX_FILE_TIMESTAMP_GRANULARITY = 1000;
+//    /**
+//     * The granularity of timestamps under Unix.
+//     */
+//    public static final long UNIX_FILE_TIMESTAMP_GRANULARITY = 1000;
 
 
     // stolen from FilePathToURI of the Xerces-J team
@@ -107,14 +107,14 @@ public class FileUtils {
         }
     }
 
-    /**
-     * Factory method.
-     *
-     * @return a new instance of FileUtils.
-     */
-    public static FileUtils newFileUtils() {
-        return new FileUtils();
-    }
+//    /**
+//     * Factory method.
+//     *
+//     * @return a new instance of FileUtils.
+//     */
+//    public static FileUtils newFileUtils() {
+//        return new FileUtils();
+//    }
 
     /**
      * Method to retrieve The FileUtils, which is shared by all users of this
@@ -838,313 +838,313 @@ public class FileUtils {
         return new File(path);
     }
 
-    /**
-     * Returns a VMS String representation of a <code>File</code> object.
-     * This is useful since the JVM by default internally converts VMS paths
-     * to Unix style.
-     * The returned String is always an absolute path.
-     *
-     * @param f The <code>File</code> to get the VMS path for.
-     * @return The absolute VMS path to <code>f</code>.
-     */
-    public String toVMSPath(File f) {
-        // format: "DEVICE:[DIR.SUBDIR]FILE"
-        String osPath;
-        String path = normalize(f.getAbsolutePath()).getPath();
-        String name = f.getName();
-        boolean isAbsolute = path.charAt(0) == File.separatorChar;
-        // treat directories specified using .DIR syntax as files
-        boolean isDirectory = f.isDirectory()
-            && !name.regionMatches(true, name.length() - 4, ".DIR", 0, 4);
+//    /**
+//     * Returns a VMS String representation of a <code>File</code> object.
+//     * This is useful since the JVM by default internally converts VMS paths
+//     * to Unix style.
+//     * The returned String is always an absolute path.
+//     *
+//     * @param f The <code>File</code> to get the VMS path for.
+//     * @return The absolute VMS path to <code>f</code>.
+//     */
+//    public String toVMSPath(File f) {
+//        // format: "DEVICE:[DIR.SUBDIR]FILE"
+//        String osPath;
+//        String path = normalize(f.getAbsolutePath()).getPath();
+//        String name = f.getName();
+//        boolean isAbsolute = path.charAt(0) == File.separatorChar;
+//        // treat directories specified using .DIR syntax as files
+//        boolean isDirectory = f.isDirectory()
+//            && !name.regionMatches(true, name.length() - 4, ".DIR", 0, 4);
+//
+//        String device = null;
+//        StringBuffer directory = null;
+//        String file = null;
+//
+//        int index = 0;
+//
+//        if (isAbsolute) {
+//            index = path.indexOf(File.separatorChar, 1);
+//            if (index == -1) {
+//                return path.substring(1) + ":[000000]";
+//            } else {
+//                device = path.substring(1, index++);
+//            }
+//        }
+//        if (isDirectory) {
+//            directory = new StringBuffer(path.substring(index).
+//                                         replace(File.separatorChar, '.'));
+//        } else {
+//            int dirEnd =
+//                path.lastIndexOf(File.separatorChar, path.length());
+//            if (dirEnd == -1 || dirEnd < index) {
+//                file = path.substring(index);
+//            } else {
+//                directory = new StringBuffer(path.substring(index, dirEnd).
+//                                             replace(File.separatorChar, '.'));
+//                index = dirEnd + 1;
+//                if (path.length() > index) {
+//                    file = path.substring(index);
+//                }
+//            }
+//        }
+//        if (!isAbsolute && directory != null) {
+//            directory.insert(0, '.');
+//        }
+//        osPath = ((device != null) ? device + ":" : "")
+//            + ((directory != null) ? "[" + directory + "]" : "")
+//            + ((file != null) ? file : "");
+//        return osPath;
+//    }
 
-        String device = null;
-        StringBuffer directory = null;
-        String file = null;
+//    /**
+//     * Create a temporary file in a given directory.
+//     *
+//     * <p>The file denoted by the returned abstract pathname did not
+//     * exist before this method was invoked, any subsequent invocation
+//     * of this method will yield a different file name.</p>
+//     * <p>
+//     * The filename is prefixNNNNNsuffix where NNNN is a random number.
+//     * </p>
+//     * <p>This method is different from File.createTempFile() of JDK 1.2
+//     * as it doesn't create the file itself.  It uses the location pointed
+//     * to by java.io.tmpdir when the parentDir attribute is null.</p>
+//     *
+//     * @param prefix prefix before the random number.
+//     * @param suffix file extension; include the '.'.
+//     * @param parentDir Directory to create the temporary file in;
+//     * java.io.tmpdir used if not specified.
+//     *
+//     * @return a File reference to the new temporary file.
+//     * @since Ant 1.5
+//     */
+//    public File createTempFile(String prefix, String suffix, File parentDir) {
+//        File result = null;
+//        String parent = (parentDir == null)
+//            ? System.getProperty("java.io.tmpdir")
+//            : parentDir.getPath();
+//
+//        DecimalFormat fmt = new DecimalFormat("#####");
+//        synchronized (rand) {
+//            do {
+//                result = new File(parent,
+//                                  prefix + fmt.format(Math.abs(rand.nextInt()))
+//                                  + suffix);
+//            } while (result.exists());
+//        }
+//        return result;
+//    }
 
-        int index = 0;
+//    /**
+//     * Compares the contents of two files.
+//     *
+//     * @param f1 the file whose content is to be compared.
+//     * @param f2 the other file whose content is to be compared.
+//     *
+//     * @return true if the content of the files is the same.
+//     *
+//     * @throws IOException if the files cannot be read.
+//     */
+//    public boolean contentEquals(File f1, File f2) throws IOException {
+//        return contentEquals(f1, f2, false);
+//    }
 
-        if (isAbsolute) {
-            index = path.indexOf(File.separatorChar, 1);
-            if (index == -1) {
-                return path.substring(1) + ":[000000]";
-            } else {
-                device = path.substring(1, index++);
-            }
-        }
-        if (isDirectory) {
-            directory = new StringBuffer(path.substring(index).
-                                         replace(File.separatorChar, '.'));
-        } else {
-            int dirEnd =
-                path.lastIndexOf(File.separatorChar, path.length());
-            if (dirEnd == -1 || dirEnd < index) {
-                file = path.substring(index);
-            } else {
-                directory = new StringBuffer(path.substring(index, dirEnd).
-                                             replace(File.separatorChar, '.'));
-                index = dirEnd + 1;
-                if (path.length() > index) {
-                    file = path.substring(index);
-                }
-            }
-        }
-        if (!isAbsolute && directory != null) {
-            directory.insert(0, '.');
-        }
-        osPath = ((device != null) ? device + ":" : "")
-            + ((directory != null) ? "[" + directory + "]" : "")
-            + ((file != null) ? file : "");
-        return osPath;
-    }
+//    /**
+//     * Compares the contents of two files.
+//     *
+//     * @param f1 the file whose content is to be compared.
+//     * @param f2 the other file whose content is to be compared.
+//     * @param textfile true if the file is to be treated as a text file and
+//     *        differences in kind of line break are to be ignored.
+//     *
+//     * @return true if the content of the files is the same.
+//     *
+//     * @throws IOException if the files cannot be read.
+//     * @since Ant 1.6.3
+//     */
+//    public boolean contentEquals(File f1, File f2, boolean textfile) throws IOException {
+//        if (f1.exists() != f2.exists()) {
+//            return false;
+//        }
+//        if (!f1.exists()) {
+//            // two not existing files are equal
+//            return true;
+//        }
+//        // should the following two be switched?  If f1 and f2 refer to the same file,
+//        // isn't their content equal regardless of whether that file is a directory?
+//        if (f1.isDirectory() || f2.isDirectory()) {
+//            // don't want to compare directory contents for now
+//            return false;
+//        }
+//        if (fileNameEquals(f1, f2)) {
+//            // same filename => true
+//            return true;
+//        }
+//        return textfile ? textEquals(f1, f2) : binaryEquals(f1, f2);
+//    }
 
-    /**
-     * Create a temporary file in a given directory.
-     *
-     * <p>The file denoted by the returned abstract pathname did not
-     * exist before this method was invoked, any subsequent invocation
-     * of this method will yield a different file name.</p>
-     * <p>
-     * The filename is prefixNNNNNsuffix where NNNN is a random number.
-     * </p>
-     * <p>This method is different from File.createTempFile() of JDK 1.2
-     * as it doesn't create the file itself.  It uses the location pointed
-     * to by java.io.tmpdir when the parentDir attribute is null.</p>
-     *
-     * @param prefix prefix before the random number.
-     * @param suffix file extension; include the '.'.
-     * @param parentDir Directory to create the temporary file in;
-     * java.io.tmpdir used if not specified.
-     *
-     * @return a File reference to the new temporary file.
-     * @since Ant 1.5
-     */
-    public File createTempFile(String prefix, String suffix, File parentDir) {
-        File result = null;
-        String parent = (parentDir == null)
-            ? System.getProperty("java.io.tmpdir")
-            : parentDir.getPath();
+//    /**
+//     * Binary compares the contents of two files.
+//     * <p>
+//     * simple but sub-optimal comparision algorithm. written for working
+//     * rather than fast. Better would be a block read into buffers followed
+//     * by long comparisions apart from the final 1-7 bytes.
+//     * </p>
+//     *
+//     * @param f1 the file whose content is to be compared.
+//     * @param f2 the other file whose content is to be compared.
+//     * @return true if the content of the files is the same.
+//     * @throws IOException if the files cannot be read.
+//     */
+//    private boolean binaryEquals(File f1, File f2) throws IOException {
+//        if (f1.length() != f2.length()) {
+//            // different size =>false
+//            return false;
+//        }
+//
+//        InputStream in1 = null;
+//        InputStream in2 = null;
+//        try {
+//            in1 = new BufferedInputStream(new FileInputStream(f1));
+//            in2 = new BufferedInputStream(new FileInputStream(f2));
+//
+//            int expectedByte = in1.read();
+//            while (expectedByte != -1) {
+//                if (expectedByte != in2.read()) {
+//                    return false;
+//                }
+//                expectedByte = in1.read();
+//            }
+//            if (in2.read() != -1) {
+//                return false;
+//            }
+//            return true;
+//        } finally {
+//            close(in1);
+//            close(in2);
+//        }
+//    }
 
-        DecimalFormat fmt = new DecimalFormat("#####");
-        synchronized (rand) {
-            do {
-                result = new File(parent,
-                                  prefix + fmt.format(Math.abs(rand.nextInt()))
-                                  + suffix);
-            } while (result.exists());
-        }
-        return result;
-    }
+//    /**
+//     * Text compares the contents of two files.
+//     *
+//     * Ignores different kinds of line endings.
+//     *
+//     * @param f1 the file whose content is to be compared.
+//     * @param f2 the other file whose content is to be compared.
+//     * @return true if the content of the files is the same.
+//     * @throws IOException if the files cannot be read.
+//     */
+//    private boolean textEquals(File f1, File f2) throws IOException {
+//        BufferedReader in1 = null;
+//        BufferedReader in2 = null;
+//        try {
+//            in1 = new BufferedReader(new FileReader(f1));
+//            in2 = new BufferedReader(new FileReader(f2));
+//
+//            String expected = in1.readLine();
+//            while (expected != null) {
+//                if (!expected.equals(in2.readLine())) {
+//                    return false;
+//                }
+//                expected = in1.readLine();
+//            }
+//            if (in2.readLine() != null) {
+//                return false;
+//            }
+//            return true;
+//        } finally {
+//            close(in1);
+//            close(in2);
+//        }
+//    }
 
-    /**
-     * Compares the contents of two files.
-     *
-     * @param f1 the file whose content is to be compared.
-     * @param f2 the other file whose content is to be compared.
-     *
-     * @return true if the content of the files is the same.
-     *
-     * @throws IOException if the files cannot be read.
-     */
-    public boolean contentEquals(File f1, File f2) throws IOException {
-        return contentEquals(f1, f2, false);
-    }
+//    /**
+//     * This was originally an emulation of {@link File#getParentFile} for JDK 1.1,
+//     * but it is now implemented using that method (Ant 1.6.3 onwards).
+//     * @param f the file whose parent is required.
+//     * @return the given file's parent, or null if the file does not have a
+//     *         parent.
+//     * @since 1.10
+//     */
+//    public File getParentFile(File f) {
+//        return (f == null) ? null : f.getParentFile();
+//    }
 
-    /**
-     * Compares the contents of two files.
-     *
-     * @param f1 the file whose content is to be compared.
-     * @param f2 the other file whose content is to be compared.
-     * @param textfile true if the file is to be treated as a text file and
-     *        differences in kind of line break are to be ignored.
-     *
-     * @return true if the content of the files is the same.
-     *
-     * @throws IOException if the files cannot be read.
-     * @since Ant 1.6.3
-     */
-    public boolean contentEquals(File f1, File f2, boolean textfile) throws IOException {
-        if (f1.exists() != f2.exists()) {
-            return false;
-        }
-        if (!f1.exists()) {
-            // two not existing files are equal
-            return true;
-        }
-        // should the following two be switched?  If f1 and f2 refer to the same file,
-        // isn't their content equal regardless of whether that file is a directory?
-        if (f1.isDirectory() || f2.isDirectory()) {
-            // don't want to compare directory contents for now
-            return false;
-        }
-        if (fileNameEquals(f1, f2)) {
-            // same filename => true
-            return true;
-        }
-        return textfile ? textEquals(f1, f2) : binaryEquals(f1, f2);
-    }
+//    /**
+//     * Read from reader till EOF.
+//     * @param rdr the reader from which to read.
+//     * @return the contents read out of the given reader.
+//     *
+//     * @throws IOException if the contents could not be read out from the
+//     *         reader.
+//     */
+//    public static final String readFully(Reader rdr) throws IOException {
+//        return readFully(rdr, BUF_SIZE);
+//    }
 
-    /**
-     * Binary compares the contents of two files.
-     * <p>
-     * simple but sub-optimal comparision algorithm. written for working
-     * rather than fast. Better would be a block read into buffers followed
-     * by long comparisions apart from the final 1-7 bytes.
-     * </p>
-     *
-     * @param f1 the file whose content is to be compared.
-     * @param f2 the other file whose content is to be compared.
-     * @return true if the content of the files is the same.
-     * @throws IOException if the files cannot be read.
-     */
-    private boolean binaryEquals(File f1, File f2) throws IOException {
-        if (f1.length() != f2.length()) {
-            // different size =>false
-            return false;
-        }
+//    /**
+//     * Read from reader till EOF.
+//     *
+//     * @param rdr the reader from which to read.
+//     * @param bufferSize the buffer size to use when reading.
+//     *
+//     * @return the contents read out of the given reader.
+//     *
+//     * @throws IOException if the contents could not be read out from the
+//     *         reader.
+//     */
+//    public static final String readFully(Reader rdr, int bufferSize)
+//        throws IOException {
+//        if (bufferSize <= 0) {
+//            throw new IllegalArgumentException("Buffer size must be greater "
+//                                               + "than 0");
+//        }
+//        final char[] buffer = new char[bufferSize];
+//        int bufferLength = 0;
+//        StringBuffer textBuffer = null;
+//        while (bufferLength != -1) {
+//            bufferLength = rdr.read(buffer);
+//            if (bufferLength > 0) {
+//                textBuffer = (textBuffer == null) ? new StringBuffer() : textBuffer;
+//                textBuffer.append(new String(buffer, 0, bufferLength));
+//            }
+//        }
+//        return (textBuffer == null) ? null : textBuffer.toString();
+//    }
 
-        InputStream in1 = null;
-        InputStream in2 = null;
-        try {
-            in1 = new BufferedInputStream(new FileInputStream(f1));
-            in2 = new BufferedInputStream(new FileInputStream(f2));
+//    /**
+//     * This was originally an emulation of File.createNewFile for JDK 1.1,
+//     * but it is now implemented using that method (Ant 1.6.3 onwards).
+//     *
+//     * <p>This method has historically <strong>not</strong> guaranteed that the
+//     * operation was atomic. In its current implementation it is.
+//     *
+//     * @param f the file to be created.
+//     * @return true if the file did not exist already.
+//     * @throws IOException on error.
+//     * @since Ant 1.5
+//     */
+//    public boolean createNewFile(File f) throws IOException {
+//        return f.createNewFile();
+//    }
 
-            int expectedByte = in1.read();
-            while (expectedByte != -1) {
-                if (expectedByte != in2.read()) {
-                    return false;
-                }
-                expectedByte = in1.read();
-            }
-            if (in2.read() != -1) {
-                return false;
-            }
-            return true;
-        } finally {
-            close(in1);
-            close(in2);
-        }
-    }
-
-    /**
-     * Text compares the contents of two files.
-     *
-     * Ignores different kinds of line endings.
-     *
-     * @param f1 the file whose content is to be compared.
-     * @param f2 the other file whose content is to be compared.
-     * @return true if the content of the files is the same.
-     * @throws IOException if the files cannot be read.
-     */
-    private boolean textEquals(File f1, File f2) throws IOException {
-        BufferedReader in1 = null;
-        BufferedReader in2 = null;
-        try {
-            in1 = new BufferedReader(new FileReader(f1));
-            in2 = new BufferedReader(new FileReader(f2));
-
-            String expected = in1.readLine();
-            while (expected != null) {
-                if (!expected.equals(in2.readLine())) {
-                    return false;
-                }
-                expected = in1.readLine();
-            }
-            if (in2.readLine() != null) {
-                return false;
-            }
-            return true;
-        } finally {
-            close(in1);
-            close(in2);
-        }
-    }
-
-    /**
-     * This was originally an emulation of {@link File#getParentFile} for JDK 1.1,
-     * but it is now implemented using that method (Ant 1.6.3 onwards).
-     * @param f the file whose parent is required.
-     * @return the given file's parent, or null if the file does not have a
-     *         parent.
-     * @since 1.10
-     */
-    public File getParentFile(File f) {
-        return (f == null) ? null : f.getParentFile();
-    }
-
-    /**
-     * Read from reader till EOF.
-     * @param rdr the reader from which to read.
-     * @return the contents read out of the given reader.
-     *
-     * @throws IOException if the contents could not be read out from the
-     *         reader.
-     */
-    public static final String readFully(Reader rdr) throws IOException {
-        return readFully(rdr, BUF_SIZE);
-    }
-
-    /**
-     * Read from reader till EOF.
-     *
-     * @param rdr the reader from which to read.
-     * @param bufferSize the buffer size to use when reading.
-     *
-     * @return the contents read out of the given reader.
-     *
-     * @throws IOException if the contents could not be read out from the
-     *         reader.
-     */
-    public static final String readFully(Reader rdr, int bufferSize)
-        throws IOException {
-        if (bufferSize <= 0) {
-            throw new IllegalArgumentException("Buffer size must be greater "
-                                               + "than 0");
-        }
-        final char[] buffer = new char[bufferSize];
-        int bufferLength = 0;
-        StringBuffer textBuffer = null;
-        while (bufferLength != -1) {
-            bufferLength = rdr.read(buffer);
-            if (bufferLength > 0) {
-                textBuffer = (textBuffer == null) ? new StringBuffer() : textBuffer;
-                textBuffer.append(new String(buffer, 0, bufferLength));
-            }
-        }
-        return (textBuffer == null) ? null : textBuffer.toString();
-    }
-
-    /**
-     * This was originally an emulation of File.createNewFile for JDK 1.1,
-     * but it is now implemented using that method (Ant 1.6.3 onwards).
-     *
-     * <p>This method has historically <strong>not</strong> guaranteed that the
-     * operation was atomic. In its current implementation it is.
-     *
-     * @param f the file to be created.
-     * @return true if the file did not exist already.
-     * @throws IOException on error.
-     * @since Ant 1.5
-     */
-    public boolean createNewFile(File f) throws IOException {
-        return f.createNewFile();
-    }
-
-    /**
-     * Create a new file, optionally creating parent directories.
-     *
-     * @param f the file to be created.
-     * @param mkdirs <code>boolean</code> whether to create parent directories.
-     * @return true if the file did not exist already.
-     * @throws IOException on error.
-     * @since Ant 1.6.3
-     */
-    public boolean createNewFile(File f, boolean mkdirs) throws IOException {
-        File parent = f.getParentFile();
-        if (mkdirs && !(parent.exists())) {
-            parent.mkdirs();
-        }
-        return f.createNewFile();
-    }
+//    /**
+//     * Create a new file, optionally creating parent directories.
+//     *
+//     * @param f the file to be created.
+//     * @param mkdirs <code>boolean</code> whether to create parent directories.
+//     * @return true if the file did not exist already.
+//     * @throws IOException on error.
+//     * @since Ant 1.6.3
+//     */
+//    public boolean createNewFile(File f, boolean mkdirs) throws IOException {
+//        File parent = f.getParentFile();
+//        if (mkdirs && !(parent.exists())) {
+//            parent.mkdirs();
+//        }
+//        return f.createNewFile();
+//    }
 
     /**
      * Checks whether a given file is a symbolic link.
@@ -1197,53 +1197,53 @@ public class FileUtils {
         return (p.startsWith(l)) ? p.substring(l.length()) : p;
     }
 
-    /**
-     * Constructs a <code>file:</code> URI that represents the
-     * external form of the given pathname.
-     *
-     * <p>Will be an absolute URI if the given path is absolute.</p>
-     *
-     * <p>This code doesn't handle non-ASCII characters properly.</p>
-     *
-     * @param path the path in the local file system.
-     * @return the URI version of the local path.
-     * @since Ant 1.6
-     */
-    public String toURI(String path) {
-        boolean isDir = (new File(path)).isDirectory();
-
-        StringBuffer sb = new StringBuffer("file:");
-
-        // catch exception if normalize thinks this is not an absolute path
-        try {
-            path = normalize(path).getAbsolutePath();
-            sb.append("//");
-            // add an extra slash for filesystems with drive-specifiers
-            if (!path.startsWith(File.separator)) {
-                sb.append("/");
-            }
-        } catch (BuildException e) {
-            // relative path
-        }
-
-        path = path.replace('\\', '/');
-
-        CharacterIterator iter = new StringCharacterIterator(path);
-        for (char c = iter.first(); c != CharacterIterator.DONE;
-             c = iter.next()) {
-            if (c < 256 && isSpecial[c]) {
-                sb.append('%');
-                sb.append(escapedChar1[c]);
-                sb.append(escapedChar2[c]);
-            } else {
-                sb.append(c);
-            }
-        }
-        if (isDir && !path.endsWith("/")) {
-            sb.append('/');
-        }
-        return sb.toString();
-    }
+//    /**
+//     * Constructs a <code>file:</code> URI that represents the
+//     * external form of the given pathname.
+//     *
+//     * <p>Will be an absolute URI if the given path is absolute.</p>
+//     *
+//     * <p>This code doesn't handle non-ASCII characters properly.</p>
+//     *
+//     * @param path the path in the local file system.
+//     * @return the URI version of the local path.
+//     * @since Ant 1.6
+//     */
+//    public String toURI(String path) {
+//        boolean isDir = (new File(path)).isDirectory();
+//
+//        StringBuffer sb = new StringBuffer("file:");
+//
+//        // catch exception if normalize thinks this is not an absolute path
+//        try {
+//            path = normalize(path).getAbsolutePath();
+//            sb.append("//");
+//            // add an extra slash for filesystems with drive-specifiers
+//            if (!path.startsWith(File.separator)) {
+//                sb.append("/");
+//            }
+//        } catch (BuildException e) {
+//            // relative path
+//        }
+//
+//        path = path.replace('\\', '/');
+//
+//        CharacterIterator iter = new StringCharacterIterator(path);
+//        for (char c = iter.first(); c != CharacterIterator.DONE;
+//             c = iter.next()) {
+//            if (c < 256 && isSpecial[c]) {
+//                sb.append('%');
+//                sb.append(escapedChar1[c]);
+//                sb.append(escapedChar2[c]);
+//            } else {
+//                sb.append(c);
+//            }
+//        }
+//        if (isDir && !path.endsWith("/")) {
+//            sb.append('/');
+//        }
+//        return sb.toString();
+//    }
 
 //    /**
 //     * Constructs a file path from a <code>file:</code> URI.
@@ -1269,24 +1269,24 @@ public class FileUtils {
 //        return path;
 //    }
 
-    /**
-     * Compares two filenames.
-     *
-     * <p>Unlike java.io.File#equals this method will try to compare
-     * the absolute paths and &quot;normalize&quot; the filenames
-     * before comparing them.</p>
-     *
-     * @param f1 the file whose name is to be compared.
-     * @param f2 the other file whose name is to be compared.
-     *
-     * @return true if the file are for the same file.
-     *
-     * @since Ant 1.5.3
-     */
-    public boolean fileNameEquals(File f1, File f2) {
-        return normalize(f1.getAbsolutePath())
-            .equals(normalize(f2.getAbsolutePath()));
-    }
+//    /**
+//     * Compares two filenames.
+//     *
+//     * <p>Unlike java.io.File#equals this method will try to compare
+//     * the absolute paths and &quot;normalize&quot; the filenames
+//     * before comparing them.</p>
+//     *
+//     * @param f1 the file whose name is to be compared.
+//     * @param f2 the other file whose name is to be compared.
+//     *
+//     * @return true if the file are for the same file.
+//     *
+//     * @since Ant 1.5.3
+//     */
+//    public boolean fileNameEquals(File f1, File f2) {
+//        return normalize(f1.getAbsolutePath())
+//            .equals(normalize(f2.getAbsolutePath()));
+//    }
 
 //    /**
 //     * Renames a file, even if that involves crossing file system boundaries.
@@ -1324,153 +1324,153 @@ public class FileUtils {
 //        }
 //    }
 
-    /**
-     * Get the granularity of file timestamps.
-     * The choice is made based on OS, which is incorrect--it should really be
-     * by filesystem. We do not have an easy way to probe for file systems,
-     * however.
-     * @return the difference, in milliseconds, which two file timestamps must have
-     * in order for the two files to be given a creation order.
-     */
-    public long getFileTimestampGranularity() {
-        return onDos
-            ? FAT_FILE_TIMESTAMP_GRANULARITY : UNIX_FILE_TIMESTAMP_GRANULARITY;
-    }
+//    /**
+//     * Get the granularity of file timestamps.
+//     * The choice is made based on OS, which is incorrect--it should really be
+//     * by filesystem. We do not have an easy way to probe for file systems,
+//     * however.
+//     * @return the difference, in milliseconds, which two file timestamps must have
+//     * in order for the two files to be given a creation order.
+//     */
+//    public long getFileTimestampGranularity() {
+//        return onDos
+//            ? FAT_FILE_TIMESTAMP_GRANULARITY : UNIX_FILE_TIMESTAMP_GRANULARITY;
+//    }
 
-    /**
-     * Returns true if the source is older than the dest.
-     * If the dest file does not exist, then the test returns false; it is
-     * implicitly not up do date.
-     * @param source source file (should be the older).
-     * @param dest dest file (should be the newer).
-     * @param granularity an offset added to the source time.
-     * @return true if the source is older than the dest after accounting
-     *              for granularity.
-     * @since Ant 1.6.3
-     */
-    public boolean isUpToDate(File source, File dest, long granularity) {
-        //do a check for the destination file existing
-        if (!dest.exists()) {
-            //if it does not, then the file is not up to date.
-            return false;
-        }
-        long sourceTime = source.lastModified();
-        long destTime = dest.lastModified();
-        return isUpToDate(sourceTime, destTime, granularity);
-    }
+//    /**
+//     * Returns true if the source is older than the dest.
+//     * If the dest file does not exist, then the test returns false; it is
+//     * implicitly not up do date.
+//     * @param source source file (should be the older).
+//     * @param dest dest file (should be the newer).
+//     * @param granularity an offset added to the source time.
+//     * @return true if the source is older than the dest after accounting
+//     *              for granularity.
+//     * @since Ant 1.6.3
+//     */
+//    public boolean isUpToDate(File source, File dest, long granularity) {
+//        //do a check for the destination file existing
+//        if (!dest.exists()) {
+//            //if it does not, then the file is not up to date.
+//            return false;
+//        }
+//        long sourceTime = source.lastModified();
+//        long destTime = dest.lastModified();
+//        return isUpToDate(sourceTime, destTime, granularity);
+//    }
 
 
-    /**
-     * Returns true if the source is older than the dest.
-     * @param source source file (should be the older).
-     * @param dest dest file (should be the newer).
-     * @return true if the source is older than the dest, taking the granularity into account.
-     * @since Ant 1.6.3
-     */
-    public boolean isUpToDate(File source, File dest) {
-        return isUpToDate(source, dest, getFileTimestampGranularity());
-    }
+//    /**
+//     * Returns true if the source is older than the dest.
+//     * @param source source file (should be the older).
+//     * @param dest dest file (should be the newer).
+//     * @return true if the source is older than the dest, taking the granularity into account.
+//     * @since Ant 1.6.3
+//     */
+//    public boolean isUpToDate(File source, File dest) {
+//        return isUpToDate(source, dest, getFileTimestampGranularity());
+//    }
 
-    /**
-     * Compare two timestamps for being up to date using
-     * the specified granularity.
-     *
-     * @param sourceTime timestamp of source file.
-     * @param destTime timestamp of dest file.
-     * @param granularity os/filesys granularity.
-     * @return true if the dest file is considered up to date.
-     */
-    public boolean isUpToDate(long sourceTime, long destTime, long granularity) {
-        if (destTime == -1) {
-            return false;
-        }
-        return destTime >= sourceTime + granularity;
-    }
+//    /**
+//     * Compare two timestamps for being up to date using
+//     * the specified granularity.
+//     *
+//     * @param sourceTime timestamp of source file.
+//     * @param destTime timestamp of dest file.
+//     * @param granularity os/filesys granularity.
+//     * @return true if the dest file is considered up to date.
+//     */
+//    public boolean isUpToDate(long sourceTime, long destTime, long granularity) {
+//        if (destTime == -1) {
+//            return false;
+//        }
+//        return destTime >= sourceTime + granularity;
+//    }
 
-    /**
-     * Compare two timestamps for being up to date using the
-     * current granularity.
-     *
-     * @param sourceTime  timestamp of source file.
-     * @param destTime    timestamp of dest file.
-     * @return true if the dest file is considered up to date.
-     */
-    public boolean isUpToDate(long sourceTime, long destTime) {
-        return isUpToDate(sourceTime, destTime, getFileTimestampGranularity());
-    }
+//    /**
+//     * Compare two timestamps for being up to date using the
+//     * current granularity.
+//     *
+//     * @param sourceTime  timestamp of source file.
+//     * @param destTime    timestamp of dest file.
+//     * @return true if the dest file is considered up to date.
+//     */
+//    public boolean isUpToDate(long sourceTime, long destTime) {
+//        return isUpToDate(sourceTime, destTime, getFileTimestampGranularity());
+//    }
 
-    /**
-     * Close a Writer without throwing any exception if something went wrong.
-     * Do not attempt to close it if the argument is null.
-     * @param device output writer, can be null.
-     */
-    public static void close(Writer device) {
-        if (device != null) {
-            try {
-                device.close();
-            } catch (IOException ioex) {
-                //ignore
-            }
-        }
-    }
+//    /**
+//     * Close a Writer without throwing any exception if something went wrong.
+//     * Do not attempt to close it if the argument is null.
+//     * @param device output writer, can be null.
+//     */
+//    public static void close(Writer device) {
+//        if (device != null) {
+//            try {
+//                device.close();
+//            } catch (IOException ioex) {
+//                //ignore
+//            }
+//        }
+//    }
 
-    /**
-     * Close a stream without throwing any exception if something went wrong.
-     * Do not attempt to close it if the argument is null.
-     *
-     * @param device Reader, can be null.
-     */
-    public static void close(Reader device) {
-        if (device != null) {
-            try {
-                device.close();
-            } catch (IOException ioex) {
-                //ignore
-            }
-        }
-    }
+//    /**
+//     * Close a stream without throwing any exception if something went wrong.
+//     * Do not attempt to close it if the argument is null.
+//     *
+//     * @param device Reader, can be null.
+//     */
+//    public static void close(Reader device) {
+//        if (device != null) {
+//            try {
+//                device.close();
+//            } catch (IOException ioex) {
+//                //ignore
+//            }
+//        }
+//    }
 
-    /**
-     * Close a stream without throwing any exception if something went wrong.
-     * Do not attempt to close it if the argument is null.
-     *
-     * @param device stream, can be null.
-     */
-    public static void close(OutputStream device) {
-        if (device != null) {
-            try {
-                device.close();
-            } catch (IOException ioex) {
-                //ignore
-            }
-        }
-    }
+//    /**
+//     * Close a stream without throwing any exception if something went wrong.
+//     * Do not attempt to close it if the argument is null.
+//     *
+//     * @param device stream, can be null.
+//     */
+//    public static void close(OutputStream device) {
+//        if (device != null) {
+//            try {
+//                device.close();
+//            } catch (IOException ioex) {
+//                //ignore
+//            }
+//        }
+//    }
 
-    /**
-     * Close a stream without throwing any exception if something went wrong.
-     * Do not attempt to close it if the argument is null.
-     *
-     * @param device stream, can be null.
-     */
-    public static void close(InputStream device) {
-        if (device != null) {
-            try {
-                device.close();
-            } catch (IOException ioex) {
-                //ignore
-            }
-        }
-    }
+//    /**
+//     * Close a stream without throwing any exception if something went wrong.
+//     * Do not attempt to close it if the argument is null.
+//     *
+//     * @param device stream, can be null.
+//     */
+//    public static void close(InputStream device) {
+//        if (device != null) {
+//            try {
+//                device.close();
+//            } catch (IOException ioex) {
+//                //ignore
+//            }
+//        }
+//    }
 
-    /**
-     * Delete the file with {@link File#delete()} if the argument is not null.
-     * Do nothing on a null argument.
-     * @param file file to delete.
-     */
-    public static void delete(File file) {
-        if (file != null) {
-            file.delete();
-        }
-    }
+//    /**
+//     * Delete the file with {@link File#delete()} if the argument is not null.
+//     * Do nothing on a null argument.
+//     * @param file file to delete.
+//     */
+//    public static void delete(File file) {
+//        if (file != null) {
+//            file.delete();
+//        }
+//    }
 }
 

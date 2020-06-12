@@ -124,13 +124,13 @@ public class Resource implements Cloneable, Comparable {
         this.name = name;
     }
 
-    /**
-     * The exists attribute tells whether a file exists.
-     * @return true if this resource exists.
-     */
-    public boolean isExists() {
-        return exists;
-    }
+//    /**
+//     * The exists attribute tells whether a file exists.
+//     * @return true if this resource exists.
+//     */
+//    public boolean isExists() {
+//        return exists;
+//    }
 
     /**
      * Set the exists attribute.
@@ -183,15 +183,15 @@ public class Resource implements Cloneable, Comparable {
         this.size = (size > UNKNOWN_SIZE) ? size : UNKNOWN_SIZE;
     }
 
-    /**
-     * Get the size of this Resource.
-     * @return the size, as a long, 0 if the Resource does not exist (for
-     *         compatibility with java.io.File), or UNKNOWN_SIZE if not known.
-     * @since Ant 1.6.3
-     */
-    public long getSize() {
-        return (exists) ? size : 0L;
-    }
+//    /**
+//     * Get the size of this Resource.
+//     * @return the size, as a long, 0 if the Resource does not exist (for
+//     *         compatibility with java.io.File), or UNKNOWN_SIZE if not known.
+//     * @since Ant 1.6.3
+//     */
+//    public long getSize() {
+//        return (exists) ? size : 0L;
+//    }
 
     /**
      * Clone this Resource.
