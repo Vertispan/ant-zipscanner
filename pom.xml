@@ -9,6 +9,13 @@
     <name>ant-zipscanner</name>
     <description>Simplified Apache Ant project, with only the tools to use the ZipScanner class</description>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
     <build>
         <plugins>
             <plugin>
@@ -23,6 +30,20 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
                 <executions>
@@ -32,10 +53,11 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <createSourcesJar>true</createSourcesJar>
                             <relocations>
                                 <relocation>
-                                    <pattern>org</pattern>
-                                    <shadedPattern>org.gwtproject.shaded.org</shadedPattern>
+                                    <pattern>org.apache.tools</pattern>
+                                    <shadedPattern>com.google.gwt.thirdparty.apache</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
